@@ -1,3 +1,5 @@
+# TODO: Delete this file
+
 # Astro Starter Kit: Basics
 
 ```sh
