@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 export function project3D(
   x: number,
   y: number,
@@ -99,3 +101,13 @@ export const chasePatterns = [
   chainPatternToIndex([{ numberOfChain: 3, amountInChain: 2 }]), // 3 of 2
   chainPatternToIndex([{ numberOfChain: 2, amountInChain: 2 }]), // 2 of 2
 ];
+
+export const getRandomPositions = (
+  spheres: { color: string; pos: THREE.Vector3 }[]
+) =>
+  Array.from({ length: spheres.length || 0 }, () => {
+    const z = spheres[0].pos.z;
+    const randomX = Math.random() * 10 - 5; // Random x between -10 and 10
+    const randomY = Math.random() * 10 - 5; // Random x between -10 and 10
+    return new THREE.Vector3(randomX, randomY, z);
+  });

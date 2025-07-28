@@ -4,6 +4,10 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Cloud, Clouds, Html, PerspectiveCamera } from "@react-three/drei";
 import { useTowerCameraAnimation } from "../hooks/useTowerCameraAnimation";
+import { Orb } from "./Orb";
+import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
+import { useRandomOrbMovement } from "../hooks/useRandomOrbMovement";
+import { getRandomPositions } from "../utils";
 
 const lighten = (color: string, percent: number) => {
   const colorObj = new THREE.Color(color);
@@ -76,21 +80,40 @@ const cubesToNotDraw = [
   98, 99, 100, 101, 102, 104, 106, 107, 111, 112,
 ];
 
+const randomCapped = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const spheres = [
+  {
+    pos: new THREE.Vector3(randomCapped(-5, -1), randomCapped(1, 5), 9),
+    color: "green",
+  },
+  {
+    pos: new THREE.Vector3(randomCapped(1, 5), randomCapped(-5, -1), 9),
+    color: "red",
+  },
+  {
+    pos: new THREE.Vector3(randomCapped(-5, -1), randomCapped(-5, -1), 9),
+    color: "blue",
+  },
+  {
+    pos: new THREE.Vector3(randomCapped(1, 5), 2, randomCapped(1, 9)),
+    color: "magenta",
+  },
+];
+
 const generateRandomOpeningText = () => {
-  // ps2 start screen trivia
-  const openingTexts = [
-    "Did you know that the towers were based on games tied to your memory card?",
-    "Did you know each tower represented a different game played?",
-    "Did you know the height of each tower was based on the number of times you started a game?",
-    "Did you know that the towers didn't rely off of save data?",
-    "Did you know the spinning orbs are suppose to represent a clock?",
-    "Did you know this took way too long to make?",
-  ];
+  // TODO: the hell do i put here
+  const openingTexts = ["Chris Kennedy Entertainment"];
   return openingTexts[Math.floor(Math.random() * openingTexts.length)];
 };
 
 export const StartingGrid: React.FC = () => {
+  const orbsRef = useRef<THREE.Mesh[]>([]);
+
   useTowerCameraAnimation();
+  useRandomOrbMovement(orbsRef, getRandomPositions(spheres));
 
   return (
     <>
@@ -100,10 +123,19 @@ export const StartingGrid: React.FC = () => {
         distance={110}
         decay={0}
         angle={1.5}
-        intensity={350}
+        intensity={200}
         castShadow
         color={lighten("#616a92", 0.4)}
       />
+      <EffectComposer>
+        <SelectiveBloom
+          intensity={3}
+          kernelSize={4}
+          luminanceThreshold={0.001}
+          luminanceSmoothing={1}
+          selection={orbsRef.current}
+        />
+      </EffectComposer>
       <BackgroundPlane />
       <Clouds>
         <Cloud
@@ -121,6 +153,22 @@ export const StartingGrid: React.FC = () => {
       <GlassBox key="bottom-left-transparent" position={[-4, -2, 10]} />
       <GlassBox key="bottom-right-transparent" position={[3, -1, 6]} />
       <GlassBox key="middle-transparent" position={[-2, 1, 7]} />
+      {spheres.map((sphere, index) => (
+        <Orb
+          key={index}
+          color={new THREE.Color(sphere.color)}
+          position={sphere.pos}
+          scale={[0.1, 0.1, 0.1]}
+          castShadow
+          receiveShadow
+          flat
+          ref={(el: THREE.Mesh | null) => {
+            if (el) {
+              orbsRef.current[index] = el;
+            }
+          }}
+        />
+      ))}
       {/* TODO: Make instanced see https://codesandbox.io/p/sandbox/r3f-instanced-colors-8fo01?file=%2Fsrc%2FApp.js%3A61%2C8-61%2C25*/}
       {Array.from({ length: 112 }, (_, i) =>
         // Skip certain cubes based on the cubesToNotDraw array
@@ -136,6 +184,7 @@ export const StartingGrid: React.FC = () => {
         )
       )}
       <Html>
+        {/* TODO: Callback */}
         <div id="openingText">{generateRandomOpeningText()}</div>
       </Html>
     </>

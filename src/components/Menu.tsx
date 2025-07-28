@@ -49,7 +49,11 @@ const BouncingOrbs = () => {
             scale={[0.3, 0.3, 0.3]}
             castShadow
             receiveShadow
-            ref={(el) => (orbRefs.current[orb.key] = el!)}
+            ref={(el: THREE.Mesh | null) => {
+              if (el) {
+                orbRefs.current[orb.key] = el;
+              }
+            }}
           />
         ))}
       </group>
@@ -63,7 +67,7 @@ export const Menu: React.FC = () => {
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={75} />
       <EffectComposer>
         <Bloom
-          intensity={3.0}
+          intensity={10}
           kernelSize={4}
           luminanceThreshold={0.001}
           luminanceSmoothing={1}

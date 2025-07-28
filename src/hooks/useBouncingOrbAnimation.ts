@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type RefObject } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { chasePatterns } from "../utils";
@@ -8,16 +8,17 @@ const rotationSpeed = 2;
 
 const chasePatternArrayLength = chasePatterns.length;
 
+// TODO: Refactor to just me more legible
 export function useBouncingOrbAnimation(
-  orbRefs: React.MutableRefObject<
+  orbRefs: RefObject<
     THREE.Mesh<
       THREE.BufferGeometry<THREE.NormalBufferAttributes>,
       THREE.Material | THREE.Material[],
       THREE.Object3DEventMap
     >[]
   >,
-  groupRef: React.RefObject<THREE.Group<THREE.Object3DEventMap>>,
-  pivotRef: React.RefObject<THREE.Object3D<THREE.Object3DEventMap>>,
+  groupRef: React.RefObject<THREE.Group<THREE.Object3DEventMap> | null>,
+  pivotRef: React.RefObject<THREE.Object3D<THREE.Object3DEventMap> | null>,
   chasePatternIndex: number,
   allOrbState: string,
   orbsState: {
