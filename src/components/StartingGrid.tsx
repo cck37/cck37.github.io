@@ -23,15 +23,12 @@ const darken = (color: string, percent: number) => {
 
 const mainColorLight = lighten("#616a92", 0.2);
 
-function Box(props: any) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
+function Tower(props: { meshProps: any; color: string }) {
+  const { meshProps, color } = props;
   return (
-    <mesh {...props} ref={meshRef}>
+    <mesh {...meshProps}>
       <boxGeometry args={[1, 1, 10]} />
-      <meshStandardMaterial
-        color={darken(mainColorLight, Math.random() * (1 - 0.55) + 0.55)}
-      />
+      <meshStandardMaterial color={color} />
     </mesh>
   );
 }
@@ -74,14 +71,16 @@ const rows = 14;
 const xGap = 1.3;
 const yGap = 1.3;
 
-const cubesToNotDraw = [
+const towersToNotDraw = [
   2, 3, 4, 5, 7, 11, 12, 14, 15, 16, 23, 24, 25, 28, 29, 31, 32, 33, 36, 39, 43,
   49, 50, 53, 56, 67, 69, 74, 76, 79, 81, 82, 83, 88, 90, 91, 92, 93, 94, 97,
   98, 99, 100, 101, 102, 104, 106, 107, 111, 112,
 ];
 
-const randomCapped = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const randomCapped = (min: number, max: number, decimal: boolean = true) => {
+  return decimal
+    ? Math.floor(Math.random() * (max - min)) + min
+    : Math.random() * (max - min) + min;
 };
 
 const spheres = [
@@ -102,6 +101,15 @@ const spheres = [
     color: "magenta",
   },
 ];
+
+const towers = Array.from({ length: 112 }, (_, i) => ({
+  pos: new THREE.Vector3(
+    (i % rows) * xGap - (rows / 2) * xGap,
+    Math.floor(i / rows) * yGap - (112 / rows / 2) * yGap,
+    Math.random() * (1 - 0) * -1
+  ),
+  color: darken(mainColorLight, randomCapped(0.55, 1, false)),
+})).filter((_, index) => !towersToNotDraw.includes(index + 1));
 
 const generateRandomOpeningText = () => {
   // TODO: the hell do i put here
@@ -170,19 +178,15 @@ export const StartingGrid: React.FC = () => {
         />
       ))}
       {/* TODO: Make instanced see https://codesandbox.io/p/sandbox/r3f-instanced-colors-8fo01?file=%2Fsrc%2FApp.js%3A61%2C8-61%2C25*/}
-      {Array.from({ length: 112 }, (_, i) =>
-        // Skip certain cubes based on the cubesToNotDraw array
-        cubesToNotDraw.includes(i + 1) ? null : (
-          <Box
-            key={i}
-            position={[
-              (i % rows) * xGap - (rows / 2) * xGap,
-              Math.floor(i / rows) * yGap - (112 / rows / 2) * yGap,
-              Math.random() * (1 - 0) * -1,
-            ]}
-          />
-        )
-      )}
+      {towers.map((tower, index) => (
+        <Tower
+          meshProps={{
+            key: index,
+            position: tower.pos,
+          }}
+          color={tower.color}
+        />
+      ))}
       <Html>
         {/* TODO: Callback */}
         <div id="openingText">{generateRandomOpeningText()}</div>

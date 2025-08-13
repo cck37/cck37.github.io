@@ -51,9 +51,9 @@
   date: "September 2017 - Present",
   location: "Holmdel, NJ",
   details: [
-    - Architected and built an SSO capable login app and migration tools using AWS Cognito and MUI for >50k login requests daily
-    - Created and planned an import utility using AWS Step Functions and Lambdas to process >100K records from CSVs into a MSSQL database
-    - Researched and developed a React + .NET application to replace a legacy payment processing system, reducing processing errors by 90%
+    - Architected and built an SSO capable *React* login app and migration tools using *AWS Cognito*, *MUI*, and *Tauri* for >50k login requests daily
+    - Created and planned an import utility using *AWS Step Functions*, *Lambdas*, and a *.NET API* to process >100K records from CSVs into a *MSSQL* database
+    - Researched and developed a *React* + *.NET* application to replace a legacy payment processing system, reducing processing errors by 90%
     - Increased case throughput of offshore teams by 200%.
   ]
 )
@@ -64,8 +64,8 @@
   date: "September 2015 - March 2016",
   location: "Philadelphia, PA",
   details: [
-    - Maintained Angular 2 production code.
-    - Developed a web application to pull analytics on servers' build status using D3.js
+    - Maintained *Angular 2* production code.
+    - Developed a web application to pull analytics on servers' build status using *D3.js*
   ]
 )
 
@@ -77,7 +77,7 @@
   details: [
     - Performed large-scale IT management and Jr. sys admin roles using Ansible
     - Worked within government-mandated security
-    - Built out cloud services for ~200 users
+    - Built out cloud services for \~200 users
   ]
 )
 
@@ -87,18 +87,17 @@
 #exp(
   title: link("https://randle.day")[Randle (Random Wordle-Like Puzzele)],
   details: [
-    - Developed a Wordle-like game where players guess a random item from a random category each day (e.g.: "Animated Disney Movies", "Green Day Songs", etc)
-    - Full stack web application built with Next.js, MUI, and Prisma.
-    - Implemented a custom backend API with Prisma and PostgreSQL.
+    - Developed a Wordle-like game where players guess a random item from a random category each day (e.g.: "Animated Disney Movies", "Modest Mouse Songs", "Cereal", etc)
+    - Full stack web application built with *Next.js*, *MUI*, *Prisma*, and *PostgresSQL*
   ]
 )
 
 #exp(
   title: link("https://github.com/streeeggs/coolhole/")[Coolhole (Synchronous media viewing platform)],
   details: [
-    - Forked a popular open-source project to create a custom platform  for sharing and watching videos with friends
+    - Forked a popular open-source *Node.js* project to create a custom platform for sharing and watching videos with friends
     - Implemented features like a points system, gambling mechanics, and chat effects
-    - Migrated from Node 8 to Node 20
+    - Regularly visted by ~100 users daily
   ]
 )
 
@@ -107,7 +106,7 @@
   details: [
     - Created a personal website to showcase my projects and resume
     - Emulates PS2 start screen with 3D graphics and animations
-    - Built with Astro, TypeScript, and React Three Fiber
+    - Built with *Astro*, *TypeScript*, and *React Three Fiber*
   ],
 )
 
