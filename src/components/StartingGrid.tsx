@@ -86,19 +86,19 @@ const randomCapped = (min: number, max: number) => {
 
 const spheres = [
   {
-    pos: new THREE.Vector3(randomCapped(-5, -1), randomCapped(1, 5), 9),
+    pos: new THREE.Vector3(randomCapped(-5, -1), randomCapped(1, 5), 6),
     color: "green",
   },
   {
-    pos: new THREE.Vector3(randomCapped(1, 5), randomCapped(-5, -1), 9),
+    pos: new THREE.Vector3(randomCapped(1, 5), randomCapped(-5, -1), 6),
     color: "red",
   },
   {
-    pos: new THREE.Vector3(randomCapped(-5, -1), randomCapped(-5, -1), 9),
+    pos: new THREE.Vector3(randomCapped(-5, -1), randomCapped(-5, -1), 6),
     color: "blue",
   },
   {
-    pos: new THREE.Vector3(randomCapped(1, 5), 2, randomCapped(1, 9)),
+    pos: new THREE.Vector3(randomCapped(1, 5), 2, randomCapped(1, 6)),
     color: "magenta",
   },
 ];

@@ -1,5 +1,9 @@
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import {
+  isTowerAnimationFinished,
+  isTowerAnimationNearlyFinished,
+} from "../animationStore";
 
 export const useTowerCameraAnimation = () => {
   let animationComplete = false;
@@ -25,8 +29,13 @@ export const useTowerCameraAnimation = () => {
     const xPoint = xCurve.getPoint(time % 1);
     camera.rotation.z = xPoint.z;
 
-    if (zPoint.z <= 3.1) {
+    if (zPoint.z <= 10 && !isTowerAnimationNearlyFinished.get()) {
+      isTowerAnimationNearlyFinished.set(true);
+    }
+
+    if (zPoint.z <= 3.1 && !isTowerAnimationFinished.get()) {
       animationComplete = true;
+      isTowerAnimationFinished.set(true);
       return;
     }
   });
