@@ -14,10 +14,10 @@ const Welcome = () => {
     isTowerAnimationNearlyFinished
   );
   return (
-    <div className={"container"}>
+    <>
       {$isTowerAnimationFinished ? (
         <div className="fade-in">
-          <Canvas>
+          <Canvas flat linear>
             <Menu />
           </Canvas>
         </div>
@@ -30,7 +30,7 @@ const Welcome = () => {
           </Canvas>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

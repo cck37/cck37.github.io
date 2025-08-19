@@ -80,7 +80,12 @@ export const Menu: React.FC = () => {
         <div className="menu">
           <div className="menu-items">
             <li className="menu-item">Browser</li>
-            <li className="menu-item">System Information</li>
+            <li
+              className="menu-item"
+              onClick={() => window.open("github.com/cck37/cck37.github.io")}
+            >
+              System Information
+            </li>
           </div>
         </div>
       </Html>

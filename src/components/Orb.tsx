@@ -1,7 +1,17 @@
 import React, { forwardRef, type JSX } from "react";
 import { Trail } from "@react-three/drei";
+import { MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 import { PS2Blue } from "../constants";
+import { extend, ReactThreeFiber, type ThreeElement } from "@react-three/fiber";
+
+extend({ MeshLineMaterial });
+
+declare module "@react-three/fiber" {
+  interface ThreeElements {
+    meshLineMaterial: ThreeElement<typeof MeshLineMaterial>;
+  }
+}
 
 // TODO: Make more configurable
 export const Orb = forwardRef<
@@ -16,15 +26,13 @@ export const Orb = forwardRef<
 
   return (
     <Trail
-      width={1} // Width of the line
-      color={color} // Color of the line
-      length={2} // Length of the line
-      decay={3} // How fast the line fades away
-      local={false} // Wether to use the target's world or local positions
-      stride={0} // Min distance between previous and current point
-      interval={1} // Number of frames to wait before next calculation
-      target={undefined} // Optional target. This object will produce the trail.
-      attenuation={(width) => width} // A function to define the width in each point along it.
+      width={20} // line width
+      length={5} // number of points
+      decay={1} // how fast the trail fades
+      stride={0.01} // min distance between samples
+      interval={1} // frames between samples
+      color={color} // trail color
+      attenuation={(w) => w * 0.5} // optional width attenuation
     >
       <mesh {...meshProps} ref={ref}>
         <sphereGeometry args={[1, 32, 32]} />
@@ -35,6 +43,21 @@ export const Orb = forwardRef<
           color={flat ? "black" : ""}
         />
       </mesh>
+      <meshLineMaterial
+        attach="material"
+        args={[
+          {
+            resolution: new THREE.Vector2(
+              window.innerWidth,
+              window.innerHeight
+            ),
+          },
+        ]} // Annoying TS requirements
+        color={color}
+        transparent
+        depthWrite={false}
+        opacity={0.01}
+      />
     </Trail>
   );
 });
