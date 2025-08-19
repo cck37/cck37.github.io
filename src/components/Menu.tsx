@@ -82,7 +82,9 @@ export const Menu: React.FC = () => {
             <li className="menu-item">Browser</li>
             <li
               className="menu-item"
-              onClick={() => window.open("github.com/cck37/cck37.github.io")}
+              onClick={() =>
+                window.open("https://github.com/cck37/cck37.github.io")
+              }
             >
               System Information
             </li>

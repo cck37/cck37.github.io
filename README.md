@@ -1,46 +1,48 @@
-# TODO: Delete this file
+# My Personal Site
 
-# My personal site
+![Screenshot of my site](demo-image.png)
+![Second sceenshot of my site](demo-image2.png)
 
-!![image of my site](image.png)
+Welcome to my personal website! This project showcases my portfolio, projects, and technical skills. It emulates the PS2 start screen with 3D graphics and animations, built using modern web technologies.
 
-Made with Typescript+Astro+React Three Fiber
+---
 
-## 🚀 Project Structure
+## 🚀 Tech Stack
 
-Astro project so whatever the starting template told me to use
+This project is built with:
+
+- **[Astro](https://astro.build/)**: A modern static site generator optimized for performance.
+- **[TypeScript](https://www.typescriptlang.org/)**: For type-safe JavaScript development.
+- **[React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)**: For rendering 3D graphics in the browser.
+- **[Copilot](https://github.com/features/copilot)**: An LLM to write my readme for me
+
+---
+
+## 🌟 Features
+
+- **3D Graphics**: Inspired by the PS2 start screen, with animations and interactivity.
+- **Modern Web Development**: Built with Astro for fast, optimized static site generation.
+- **Responsive Design**: Works seamlessly across devices.
+- **Showcase of Projects**: Highlights my portfolio and personal projects.
+
+---
+
+## 📂 Project Structure
+
+The project follows the standard Astro structure:
 
 ```text
 /
-├── public/
+├── public/                # Static assets (e.g., images, icons)
 │   └── favicon.svg
-├── src
-│   ├── assets
+├── src/
+│   ├── assets/            # Project-specific assets
 │   │   └── astro.svg
-│   ├── components
+│   ├── components/        # Reusable UI components
 │   │   └── Welcome.astro
-│   ├── layouts
+│   ├── layouts/           # Layout components for pages
 │   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   └── pages/             # Site pages
+│       └── index.astro    # Homepage
+└── [package.json]         # Project dependencies and scripts
 ```
-
-## 🧞 Commands
-
-Straight from Astro starting projection...
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Sucks. I might write a blog using some markdown in the future.
