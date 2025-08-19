@@ -1,32 +1,5 @@
 import * as THREE from "three";
 
-export function project3D(
-  x: number,
-  y: number,
-  z: number,
-  perspective: number
-) {
-  const scale = perspective / (perspective + z);
-  return {
-    x: x * scale,
-    y: y * scale,
-    scale,
-  };
-}
-
-export const isFaceVisible = (
-  p0: { x: number; y: number },
-  p1: { x: number; y: number },
-  p2: { x: number; y: number }
-) => {
-  const dx1 = p1.x - p0.x;
-  const dy1 = p1.y - p0.y;
-  const dx2 = p2.x - p0.x;
-  const dy2 = p2.y - p0.y;
-  // Z component of cross product (in 2D): dx1 * dy2 - dx2 * dy1
-  return dx1 * dy2 - dx2 * dy1 < 0; // Negative = facing the camera
-};
-
 export const orbIndexToStart = (index: number, circleRadius: number) => [
   circleRadius * Math.cos((index / 7) * Math.PI * 2),
   circleRadius * Math.sin((index / 7) * Math.PI * 2),
