@@ -3,7 +3,7 @@ import { Trail } from "@react-three/drei";
 import { MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 import { PS2Blue } from "../constants";
-import { extend, ReactThreeFiber, type ThreeElement } from "@react-three/fiber";
+import { extend, type ThreeElement } from "@react-three/fiber";
 
 extend({ MeshLineMaterial });
 
@@ -35,7 +35,7 @@ export const Orb = forwardRef<
       attenuation={(w) => w * 0.5} // optional width attenuation
     >
       <mesh {...meshProps} ref={ref}>
-        <sphereGeometry args={[1, 32, 32]} />
+        <sphereGeometry args={[1, 10, 10]} />
         <meshStandardMaterial
           emissive={color}
           emissiveIntensity={3}

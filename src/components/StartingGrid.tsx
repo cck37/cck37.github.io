@@ -2,7 +2,14 @@
 import React, { useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { Cloud, Clouds, Html, PerspectiveCamera } from "@react-three/drei";
+import {
+  Cloud,
+  Clouds,
+  Html,
+  Instance,
+  Instances,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { useTowerCameraAnimation } from "../hooks/useTowerCameraAnimation";
 import { Orb } from "./Orb";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
@@ -106,7 +113,7 @@ const towers = Array.from({ length: 112 }, (_, i) => ({
   pos: new THREE.Vector3(
     (i % rows) * xGap - (rows / 2) * xGap,
     Math.floor(i / rows) * yGap - (112 / rows / 2) * yGap,
-    Math.random() * (1 - 0) * -1
+    Math.random() * (2 - 0) * -1
   ),
   color: darken(mainColorLight, randomCapped(0.55, 1, false)),
 })).filter((_, index) => !towersToNotDraw.includes(index + 1));
@@ -178,15 +185,13 @@ export const StartingGrid: React.FC = () => {
         />
       ))}
       {/* TODO: Make instanced see https://codesandbox.io/p/sandbox/r3f-instanced-colors-8fo01?file=%2Fsrc%2FApp.js%3A61%2C8-61%2C25*/}
-      {towers.map((tower, index) => (
-        <Tower
-          meshProps={{
-            key: index,
-            position: tower.pos,
-          }}
-          color={tower.color}
-        />
-      ))}
+      <Instances limit={112}>
+        <boxGeometry args={[1, 1, 10]} />
+        <meshStandardMaterial />
+        {towers.map((tower, index) => (
+          <Instance key={index} position={tower.pos} color={tower.color} />
+        ))}
+      </Instances>
       <Html>
         {/* TODO: Callback */}
         <div id="openingText">{generateRandomOpeningText()}</div>

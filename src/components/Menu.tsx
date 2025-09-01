@@ -7,6 +7,7 @@ import { useBouncingOrbAnimation } from "../hooks/useBouncingOrbAnimation";
 import { orbIndexToStart } from "../utils";
 import { PS2Blue } from "../constants";
 import resume from "../assets/resume.pdf";
+import { Instances, Instance } from "@react-three/drei";
 
 const circleCenter = new THREE.Vector3(-5, 0, 0);
 const circleRadius = 5;

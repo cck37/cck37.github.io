@@ -176,14 +176,13 @@ dialog {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
   transition: stroke 0.3s ease;
-  stroke: $grey;
 }
 
 .dialog-header a svg {
   width: 1rem;
   height: 1rem;
+  stroke: $grey;
 }
 
 .dialog-header a:hover {
