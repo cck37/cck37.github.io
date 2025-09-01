@@ -83,7 +83,12 @@ export const Menu: React.FC = () => {
           <dialog ref={dialogRef} className="resume-dialog">
             <div className="dialog-header">
               <h3>
-                <a href={resume} target="_blank" rel="noreferrer">
+                <a
+                  href={resume}
+                  target="_blank"
+                  rel="noreferrer"
+                  download="Chris_Kennedy_Resume.pdf"
+                >
                   Resume
                   <svg
                     width="800"
