@@ -6,6 +6,7 @@ import { Orb } from "./Orb";
 import { useBouncingOrbAnimation } from "../hooks/useBouncingOrbAnimation";
 import { orbIndexToStart } from "../utils";
 import { PS2Blue } from "../constants";
+import resume from "../assets/resume.pdf";
 
 const circleCenter = new THREE.Vector3(-5, 0, 0);
 const circleRadius = 5;
@@ -62,6 +63,7 @@ const BouncingOrbs = () => {
 };
 
 export const Menu: React.FC = () => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={75} />
@@ -78,8 +80,84 @@ export const Menu: React.FC = () => {
 
       <Html>
         <div className="menu">
+          <dialog ref={dialogRef} className="resume-dialog">
+            <div className="dialog-header">
+              <h3>
+                <a href={resume} target="_blank" rel="noreferrer">
+                  Resume
+                  <svg
+                    width="800"
+                    height="800"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="Interface / Download">
+                      <path
+                        id="Vector"
+                        d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </g>
+                  </svg>
+                </a>
+              </h3>
+              <button
+                className="close-button"
+                onClick={() => dialogRef.current?.close()}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="256"
+                  height="256"
+                  viewBox="0 0 512 512"
+                >
+                  <line
+                    x1="64"
+                    y1="64"
+                    x2="448"
+                    y2="448"
+                    stroke-width="96"
+                    stroke-linecap="square"
+                  />
+                  <line
+                    x1="448"
+                    y1="64"
+                    x2="64"
+                    y2="448"
+                    stroke-width="96"
+                    stroke-linecap="square"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="dialog-content">
+              {/* Display resume pdf */}
+              <object
+                data={resume}
+                type="application/pdf"
+                width="100%"
+                height="100%"
+              >
+                <p>
+                  It appears you don't have a PDF plugin for this browser. No
+                  worries, you can{" "}
+                  <a href={resume} target="_blank" rel="noreferrer">
+                    click here to download the PDF file.
+                  </a>
+                </p>
+              </object>
+            </div>
+          </dialog>
           <div className="menu-items">
-            <li className="menu-item">Browser</li>
+            <li
+              className="menu-item"
+              onClick={() => dialogRef.current?.showModal()}
+            >
+              Browser
+            </li>
             <li
               className="menu-item"
               onClick={() =>
