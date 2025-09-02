@@ -176,17 +176,20 @@ dialog {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: stroke 0.3s ease;
 }
 
 .dialog-header a svg {
   width: 1rem;
   height: 1rem;
   stroke: $grey;
+  transition: stroke 0.3s ease;
 }
 
 .dialog-header a:hover {
   color: color.adjust($ps2blue, $lightness: 30%, $space: hsl);
+}
+
+.dialog-header a:hover svg {
   stroke: color.adjust($ps2blue, $lightness: 30%, $space: hsl);
 }
 

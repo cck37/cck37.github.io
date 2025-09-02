@@ -47,7 +47,7 @@
 = Experience
 #exp(
   title: "Senior Software Engineer",
-  organization: "Workwave",
+  organization: "Workwave LLC",
   date: "September 2017 - Present",
   location: "Holmdel, NJ",
   details: [
@@ -97,7 +97,7 @@
   details: [
     - Forked a popular open-source *Node.js* project to create a custom platform for sharing and watching videos with friends
     - Implemented features like a points system, gambling mechanics, and chat effects
-    - Regularly visted by ~100 users daily
+    - Regularly visted by \~100 users daily
   ]
 )
 

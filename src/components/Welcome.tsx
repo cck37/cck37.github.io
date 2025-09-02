@@ -7,6 +7,7 @@ import {
   isTowerAnimationNearlyFinished,
 } from "../animationStore";
 import { useStore } from "@nanostores/react";
+import { Stats } from "@react-three/drei";
 
 const Welcome = () => {
   const $isTowerAnimationFinished = useStore(isTowerAnimationFinished);
@@ -30,6 +31,7 @@ const Welcome = () => {
           </Canvas>
         </div>
       )}
+      <Stats showPanel={0} className="stats-top-left" />
     </>
   );
 };
