@@ -102,9 +102,9 @@ export const Menu: React.FC = () => {
                       <path
                         id="Vector"
                         d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </g>
                   </svg>
@@ -125,16 +125,16 @@ export const Menu: React.FC = () => {
                     y1="64"
                     x2="448"
                     y2="448"
-                    stroke-width="96"
-                    stroke-linecap="square"
+                    strokeWidth="96"
+                    strokeLinecap="square"
                   />
                   <line
                     x1="448"
                     y1="64"
                     x2="64"
                     y2="448"
-                    stroke-width="96"
-                    stroke-linecap="square"
+                    strokeWidth="96"
+                    strokeLinecap="square"
                   />
                 </svg>
               </button>

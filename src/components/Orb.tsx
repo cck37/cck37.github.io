@@ -44,7 +44,6 @@ export const Orb = forwardRef<
         />
       </mesh>
       <meshLineMaterial
-        attach="material"
         args={[
           {
             resolution: new THREE.Vector2(
