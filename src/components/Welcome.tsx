@@ -1,4 +1,4 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, type CanvasProps } from "@react-three/fiber";
 import { Menu } from "./Menu";
 import { StartingGrid } from "./StartingGrid";
 import {
@@ -6,7 +6,22 @@ import {
   isTowerAnimationNearlyFinished,
 } from "../animationStore";
 import { useStore } from "@nanostores/react";
-import { Stats } from "@react-three/drei";
+import { AdaptiveDpr, AdaptiveEvents, Stats } from "@react-three/drei";
+import * as THREE from "three";
+
+const canvasProps: CanvasProps = {
+  dpr: [1, 1.5],
+  gl: {
+    antialias: false,
+    powerPreference: "high-performance",
+    alpha: false,
+    stencil: false,
+  },
+  onCreated: ({ gl }) => {
+    gl.outputColorSpace = THREE.SRGBColorSpace;
+    gl.toneMapping = THREE.NoToneMapping;
+  },
+};
 
 const Welcome = () => {
   const $isTowerAnimationFinished = useStore(isTowerAnimationFinished);
@@ -17,7 +32,9 @@ const Welcome = () => {
     <>
       {$isTowerAnimationFinished ? (
         <div className="fade-in">
-          <Canvas flat linear dpr={[1, 1.5]}>
+          <Canvas {...canvasProps}>
+            <AdaptiveDpr pixelated />
+            <AdaptiveEvents />
             <Menu />
           </Canvas>
         </div>
@@ -25,7 +42,9 @@ const Welcome = () => {
         <div
           className={$isTowerAnimationNearlyFinished ? "fade-out" : "fade-in"}
         >
-          <Canvas>
+          <Canvas {...canvasProps}>
+            <AdaptiveDpr pixelated />
+            <AdaptiveEvents />
             <StartingGrid />
           </Canvas>
         </div>

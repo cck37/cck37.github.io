@@ -12,11 +12,7 @@ import {
 } from "@react-three/drei";
 import { useTowerCameraAnimation } from "../hooks/useTowerCameraAnimation";
 import { Orb } from "./Orb";
-import {
-  Bloom,
-  EffectComposer,
-  SelectiveBloom,
-} from "@react-three/postprocessing";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useRandomOrbMovement } from "../hooks/useRandomOrbMovement";
 import { getRandomPositions } from "../utils";
 
@@ -108,7 +104,7 @@ const spheres = [
     color: "blue",
   },
   {
-    pos: new THREE.Vector3(randomCapped(1, 5), 2, randomCapped(1, 6)),
+    pos: new THREE.Vector3(randomCapped(1, 5), randomCapped(1, 5), 6),
     color: "magenta",
   },
 ];
@@ -121,12 +117,6 @@ const towers = Array.from({ length: 112 }, (_, i) => ({
   ),
   color: darken(mainColorLight, randomCapped(0.55, 1, false)),
 })).filter((_, index) => !towersToNotDraw.includes(index + 1));
-
-const generateRandomOpeningText = () => {
-  // TODO: the hell do i put here
-  const openingTexts = ["Chris Kennedy Entertainment"];
-  return openingTexts[Math.floor(Math.random() * openingTexts.length)];
-};
 
 export const StartingGrid: React.FC = () => {
   const orbsRef = useRef<THREE.Mesh[]>([]);
@@ -147,14 +137,21 @@ export const StartingGrid: React.FC = () => {
         color={lighten("#616a92", 0.4)}
       />
       <ambientLight />
-      {/* <EffectComposer>
+      <EffectComposer
+        multisampling={0}
+        resolutionScale={0.7}
+        enableNormalPass={false}
+      >
         <Bloom
           intensity={1}
           kernelSize={1}
           luminanceThreshold={1}
           luminanceSmoothing={0.5}
+          resolutionX={1}
+          resolutionY={1}
+          minMapBlur
         />
-      </EffectComposer> */}
+      </EffectComposer>
       <BackgroundPlane />
       <Clouds>
         <Cloud
@@ -164,6 +161,7 @@ export const StartingGrid: React.FC = () => {
           segments={3}
           bounds={[-2, 3, 5]}
           volume={12}
+          speed={0}
           color="#132c56"
         />
       </Clouds>
@@ -197,7 +195,7 @@ export const StartingGrid: React.FC = () => {
       </Instances>
       <Html>
         {/* TODO: Callback */}
-        <div id="openingText">{generateRandomOpeningText()}</div>
+        <div id="openingText">Chris Kennedy Entertainment</div>
       </Html>
     </>
   );
