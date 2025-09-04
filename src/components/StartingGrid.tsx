@@ -147,14 +147,14 @@ export const StartingGrid: React.FC = () => {
         color={lighten("#616a92", 0.4)}
       />
       <ambientLight />
-      <EffectComposer>
+      {/* <EffectComposer>
         <Bloom
           intensity={1}
           kernelSize={1}
           luminanceThreshold={1}
           luminanceSmoothing={0.5}
         />
-      </EffectComposer>
+      </EffectComposer> */}
       <BackgroundPlane />
       <Clouds>
         <Cloud

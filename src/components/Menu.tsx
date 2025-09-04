@@ -69,14 +69,14 @@ export const Menu: React.FC = () => {
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={75} />
       <ambientLight intensity={0.8} />
-      <EffectComposer>
+      {/* <EffectComposer>
         <Bloom
           intensity={5}
           kernelSize={2}
           luminanceThreshold={1}
           luminanceSmoothing={0.5}
         />
-      </EffectComposer>
+      </EffectComposer> */}
       <BouncingOrbs />
 
       <Html>
