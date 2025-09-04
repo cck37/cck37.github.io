@@ -12,7 +12,11 @@ import {
 } from "@react-three/drei";
 import { useTowerCameraAnimation } from "../hooks/useTowerCameraAnimation";
 import { Orb } from "./Orb";
-import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
+import {
+  Bloom,
+  EffectComposer,
+  SelectiveBloom,
+} from "@react-three/postprocessing";
 import { useRandomOrbMovement } from "../hooks/useRandomOrbMovement";
 import { getRandomPositions } from "../utils";
 
@@ -142,13 +146,13 @@ export const StartingGrid: React.FC = () => {
         castShadow
         color={lighten("#616a92", 0.4)}
       />
+      <ambientLight />
       <EffectComposer>
-        <SelectiveBloom
-          intensity={3}
-          kernelSize={4}
-          luminanceThreshold={0.001}
-          luminanceSmoothing={1}
-          selection={orbsRef.current}
+        <Bloom
+          intensity={1}
+          kernelSize={1}
+          luminanceThreshold={1}
+          luminanceSmoothing={0.5}
         />
       </EffectComposer>
       <BackgroundPlane />
@@ -174,8 +178,7 @@ export const StartingGrid: React.FC = () => {
           color={new THREE.Color(sphere.color)}
           position={sphere.pos}
           scale={[0.1, 0.1, 0.1]}
-          castShadow
-          receiveShadow
+          emissiveIntensity={20}
           flat
           ref={(el: THREE.Mesh | null) => {
             if (el) {

@@ -16,10 +16,15 @@ declare module "@react-three/fiber" {
 // TODO: Make more configurable
 export const Orb = forwardRef<
   THREE.Mesh,
-  { color?: THREE.Color; flat?: Boolean } & JSX.IntrinsicElements["mesh"]
+  {
+    color?: THREE.Color;
+    emissiveIntensity?: number;
+    flat?: Boolean;
+  } & JSX.IntrinsicElements["mesh"]
 >((props, ref) => {
   const {
     color = new THREE.Color(PS2Blue),
+    emissiveIntensity = 10,
     flat = false,
     ...meshProps
   } = props;
@@ -38,20 +43,13 @@ export const Orb = forwardRef<
         <sphereGeometry args={[1, 10, 10]} />
         <meshStandardMaterial
           emissive={color}
-          emissiveIntensity={3}
+          emissiveIntensity={emissiveIntensity}
           toneMapped={false}
           color={flat ? "black" : ""}
         />
       </mesh>
+      {/* @ts-ignore: Because of how meshLine is being extended, TS is expecting args. However, when provided, three complains that it doesn't take args */}
       <meshLineMaterial
-        args={[
-          {
-            resolution: new THREE.Vector2(
-              window.innerWidth,
-              window.innerHeight
-            ),
-          },
-        ]} // Annoying TS requirements
         color={color}
         transparent
         depthWrite={false}

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Menu } from "./Menu";
 import { StartingGrid } from "./StartingGrid";
@@ -18,7 +17,7 @@ const Welcome = () => {
     <>
       {$isTowerAnimationFinished ? (
         <div className="fade-in">
-          <Canvas flat linear>
+          <Canvas flat linear dpr={[1, 1.5]}>
             <Menu />
           </Canvas>
         </div>
