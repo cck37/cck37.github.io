@@ -18,6 +18,8 @@ const startingOrbs = Array.from({ length: 7 }, (_, i) => ({
   key: i,
 }));
 
+const orbColor = new THREE.Color(PS2Blue);
+
 const BouncingOrbs = () => {
   // TODO: Reduce deps and useMemoize this
   const orbRefs = useRef<THREE.Mesh[]>([]);
@@ -46,7 +48,7 @@ const BouncingOrbs = () => {
         {startingOrbs.map((orb) => (
           <Orb
             key={orb.key}
-            color={new THREE.Color(PS2Blue)}
+            color={orbColor}
             position={orb.position}
             scale={[0.3, 0.3, 0.3]}
             castShadow

@@ -69,6 +69,8 @@ function GlassBox(props: any) {
         roughness={0}
         transmission={1}
         thickness={2}
+        depthWrite={false}
+        toneMapped={false}
       />
     </mesh>
   );
