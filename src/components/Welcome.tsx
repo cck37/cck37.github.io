@@ -12,7 +12,7 @@ import * as THREE from "three";
 const canvasProps: CanvasProps = {
   dpr: [1, 1.5],
   gl: {
-    antialias: false,
+    antialias: false, // This alone increases performance by like 20 frames on slower hardware
     powerPreference: "high-performance",
     alpha: false,
     stencil: false,

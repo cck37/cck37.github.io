@@ -92,33 +92,6 @@ export const Menu: React.FC = () => {
         <div className="menu">
           <dialog ref={dialogRef} className="resume-dialog">
             <div className="dialog-header">
-              <h3>
-                <a
-                  href={resume}
-                  target="_blank"
-                  rel="noreferrer"
-                  download="Chris_Kennedy_Resume.pdf"
-                >
-                  Resume
-                  <svg
-                    width="800"
-                    height="800"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g id="Interface / Download">
-                      <path
-                        id="Vector"
-                        d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                  </svg>
-                </a>
-              </h3>
               <button
                 className="close-button"
                 onClick={() => dialogRef.current?.close()}
@@ -149,7 +122,6 @@ export const Menu: React.FC = () => {
               </button>
             </div>
             <div className="dialog-content">
-              {/* Display resume pdf */}
               <object
                 data={resume}
                 type="application/pdf"
