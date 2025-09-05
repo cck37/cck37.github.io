@@ -3,10 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "npx typst compile src/resume/resume.typ src/assets/resume.pdf && astro build",
+    "dev": "npm run build:resume && astro dev",
+    "build": "npm run build:resume && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:resume": "npx typst compile src/resume/resume.typ src/assets/resume.pdf"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
