@@ -3,7 +3,7 @@ import * as THREE from "three";
 import {
   isTowerAnimationFinished,
   isTowerAnimationNearlyFinished,
-} from "../animationStore";
+} from "../../../animationStore";
 
 export const useTowerCameraAnimation = () => {
   let animationComplete = false;

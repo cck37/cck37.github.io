@@ -1,69 +1,8 @@
 import React, { useRef } from "react";
-import * as THREE from "three";
 import { Html, PerspectiveCamera } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import { Orb } from "./Orb";
-import { useBouncingOrbAnimation } from "../hooks/useBouncingOrbAnimation";
-import { orbIndexToStart } from "../utils";
-import { PS2Blue } from "../constants";
-import resume from "../assets/resume.pdf";
-import { Instances, Instance } from "@react-three/drei";
-
-const circleCenter = new THREE.Vector3(-5, 0, 0);
-const circleRadius = 5;
-
-const startingOrbs = Array.from({ length: 7 }, (_, i) => ({
-  // position in a circle around the center
-  position: new THREE.Vector3(...orbIndexToStart(i, circleRadius)),
-  key: i,
-}));
-
-const orbColor = new THREE.Color(PS2Blue);
-
-const BouncingOrbs = () => {
-  // TODO: Reduce deps and useMemoize this
-  const orbRefs = useRef<THREE.Mesh[]>([]);
-  const groupRef = useRef<THREE.Group>(null);
-  const pivotRef = useRef<THREE.Object3D>(null);
-  let allOrbState: "moveTowards" | "moveAway" | "moving" = "moveTowards";
-  let prevAllOrbState: "moveTowards" | "moveAway" | "moving" = "moveAway";
-  let orbsState = startingOrbs.map((orb) => ({ ...orb, state: "moving" }));
-  let chasePatternIndex = 0;
-
-  useBouncingOrbAnimation(
-    orbRefs,
-    groupRef,
-    pivotRef,
-    chasePatternIndex,
-    allOrbState,
-    orbsState,
-    startingOrbs,
-    prevAllOrbState,
-    circleRadius
-  );
-
-  return (
-    <object3D ref={pivotRef} position={circleCenter}>
-      <group ref={groupRef}>
-        {startingOrbs.map((orb) => (
-          <Orb
-            key={orb.key}
-            color={orbColor}
-            position={orb.position}
-            scale={[0.3, 0.3, 0.3]}
-            castShadow
-            receiveShadow
-            ref={(el: THREE.Mesh | null) => {
-              if (el) {
-                orbRefs.current[orb.key] = el;
-              }
-            }}
-          />
-        ))}
-      </group>
-    </object3D>
-  );
-};
+import resume from "../../assets/resume.pdf";
+import { ChasingOrbs } from "../../components/ChasingOrbs";
 
 export const Menu: React.FC = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -86,7 +25,7 @@ export const Menu: React.FC = () => {
           mipmapBlur
         />
       </EffectComposer>
-      <BouncingOrbs />
+      <ChasingOrbs />
 
       <Html>
         <div className="menu">

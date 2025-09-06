@@ -2,14 +2,14 @@ import React, { type RefObject } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { chasePatterns } from "../utils";
-
-const chaseSpeed = 0.01;
-const rotationSpeed = 2;
-
-const chasePatternArrayLength = chasePatterns.length;
+import {
+  CHASE_PATTERN_LENGTH,
+  CHASE_SPEED,
+  ROTATION_SPEED,
+} from "../constants";
 
 // TODO: Refactor to just me more legible
-export function useBouncingOrbAnimation(
+export function useChasingOrbAnimation(
   orbRefs: RefObject<
     THREE.Mesh<
       THREE.BufferGeometry<THREE.NormalBufferAttributes>,
@@ -35,6 +35,9 @@ export function useBouncingOrbAnimation(
   circleRadius: number
 ) {
   useFrame(({ clock }) => {
+    // TODO: Handle orbs starting off scene and moving towards their starting positions
+    // TODO: Handle one moving away when a menu item is selected
+
     if (!orbRefs.current) return;
     if (!groupRef.current) return;
     if (!pivotRef.current) return;
@@ -70,7 +73,7 @@ export function useBouncingOrbAnimation(
               if (angularDistance < -Math.PI) angularDistance += 2 * Math.PI;
             }
 
-            const step = Math.sign(angularDistance) * chaseSpeed;
+            const step = Math.sign(angularDistance) * CHASE_SPEED;
             const newAngle = currentAngle + step;
             orb.position.x = circleRadius * Math.cos(newAngle);
             orb.position.y = circleRadius * Math.sin(newAngle);
@@ -95,7 +98,7 @@ export function useBouncingOrbAnimation(
               if (angularDistance > Math.PI) angularDistance -= 2 * Math.PI;
               if (angularDistance < -Math.PI) angularDistance += 2 * Math.PI;
             }
-            const step = Math.sign(angularDistance) * chaseSpeed;
+            const step = Math.sign(angularDistance) * CHASE_SPEED;
             const newAngle = currentAngle + step;
             orb.position.x = circleRadius * Math.cos(newAngle);
             orb.position.y = circleRadius * Math.sin(newAngle);
@@ -110,6 +113,7 @@ export function useBouncingOrbAnimation(
       }
     });
 
+    // TODO: Wait a few frames
     if (
       orbsState.every(
         (orb) => orb.state === "atTarget" || orb.state === "static"
@@ -127,14 +131,14 @@ export function useBouncingOrbAnimation(
     }
 
     if (allOrbState !== prevAllOrbState && allOrbState === "moveTowards") {
-      chasePatternIndex = (chasePatternIndex + 1) % chasePatternArrayLength;
+      chasePatternIndex = (chasePatternIndex + 1) % CHASE_PATTERN_LENGTH;
       prevAllOrbState = allOrbState;
     }
 
     // 1. Rotate each orb around a circle
     // 3. All orbs rotate around the x and z-axis of the circle
-    pivotRef.current.rotation.x = clock.getElapsedTime() * rotationSpeed;
-    pivotRef.current.rotation.z = clock.getElapsedTime() * rotationSpeed;
+    pivotRef.current.rotation.x = clock.getElapsedTime() * ROTATION_SPEED;
+    pivotRef.current.rotation.z = clock.getElapsedTime() * ROTATION_SPEED;
   });
   return { chasePatternIndex, allOrbState, prevAllOrbState };
 }

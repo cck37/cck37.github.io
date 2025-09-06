@@ -32,33 +32,40 @@ This project is built with:
 The project didn't deviate from the standard Astro structure because I don't know how else this would work besides don't you have eyes and can scroll up ok whatever here:
 
 ```text
-/
-├── public/                # Static assets (e.g., images, icons)
-│   └── favicon.svg        # Favicon for the site
-├── src/
-│   ├── assets/            # Project-specific assets
-│   │   └── astro.svg      # Project specific asset being the unused starter image I forgot to remove
-│   ├── components/        # "Reusable" UI components + whole pages disguised as components so I can transition between sceens without reload
-│   │   ├── Menu.tsx       # Menu "component"
-│   │   ├── Orb.tsx        # Orb component (actual reuse)
-│   │   ├── StartingGrid.tsx # Starting grid "component"
-│   │   └── CubeGridCanvas.tsx # This doesn't even exist. GPT made it up but I kept it here anyway
-│   ├── layouts/           # Layout components for pages
-│   │   └── Layout.astro   # Main layout for the site + errant styles
-│   ├── hooks/             # Custom React hooks
-│   │   ├── useBouncingOrbAnimation.ts # The bed that has all the monsters hiding under it
-│   │   └── useTowerCameraAnimation.ts # The closet that isn't much better
-│   ├── pages/             # Site pages
-│   │   ├── index.astro    # Unchanged from astro cli
-│   │   └── css-attempt.tsx # Also not real but still funny to me
-│   ├── styles/            # SCSS styles for the project
-│   │   └── global.scss    # Unnecessary use of SCSS just to get "lighten"
-│   └── utils/             # Utility functions
-│       └── utils.ts       # Helper functions aka: Another rug to sweep under
-├── gatsby-config.ts       # Gatsby configuration file
-├── package.json           # Project dependencies and scripts
-├── README.md              # Project documentation
-└── LICENSE                # License for the project
+src/
+├── animationStore.ts       # Animation state management
+├── assets/                 # Two useless svgs and my resume
+├── components/
+│   ├── BackgroundPlane.tsx
+│   ├── Canvas.tsx
+│   ├── ChasingOrbs.tsx
+│   ├── GlassBox.tsx
+│   ├── Main.tsx
+│   ├── Orb.tsx
+│   └── Tower.tsx
+├── layouts/                # Astro made me do it
+│   └── Layout.astro
+├── pages/                  # Site pages
+├── resume/                 # Resume and cover letter files
+├── scenes/                 # Scene-specific apps and logic
+│   ├── Menu/
+│   │   ├── Menu.tsx
+│   │   ├── constants.ts
+│   │   ├── hooks/
+│   │   │   └── useChasingOrbAnimation.ts  # Probably the worst file of this project
+│   │   └── utils.ts
+│   ├── Towers/
+│       ├── TowersScene.tsx
+│       ├── constants.ts
+│       └── hooks/
+│           ├── useRandomOrbMovement.ts
+│           └── useTowerCameraAnimation.ts
+├── styles/                 # Unnecessary SCSS styles for the project
+│   └── global.scss
+└── utils/                  # Bed to shove stuff under
+    ├── canvasProps.ts
+    ├── colorUtils.ts
+    └── utils.ts
 ```
 
 ## 📸 Demo

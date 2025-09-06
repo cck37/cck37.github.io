@@ -2,8 +2,8 @@ import React, { forwardRef, type JSX } from "react";
 import { Trail } from "@react-three/drei";
 import { MeshLineMaterial } from "meshline";
 import * as THREE from "three";
-import { PS2Blue } from "../constants";
 import { extend, type ThreeElement } from "@react-three/fiber";
+import { PS2Blue } from "../utils/colorUtils";
 
 extend({ MeshLineMaterial });
 
