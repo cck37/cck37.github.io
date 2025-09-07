@@ -19,7 +19,7 @@ export const FadeCanvas: React.FC<FadeCanvasProps> = ({
   isFadingOut,
 }) => (
   <div className={isFadingOut ? "fade-out" : "fade-in"}>
-    <Canvas {...canvasProps}>
+    <Canvas {...canvasProps} className="canvas">
       <Adaptive />
       {children}
     </Canvas>

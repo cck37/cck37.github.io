@@ -28,12 +28,6 @@ body {
   font-family: "Play", sans-serif;
 }
 
-.container {
-  width: 100%;
-  position: relative;
-  aspect-ratio: 16 / 9;
-}
-
 .main {
   display: flex;
   justify-content: center;
@@ -53,7 +47,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 3vmin;
+  font-size: clamp(1.5rem, 4vmin, 2.5rem);
   text-align: center;
   z-index: 1000;
   // thick outline around text
@@ -97,7 +91,7 @@ body {
   display: inline-block;
   color: #545454;
   text-decoration: none;
-  font-size: 4dvw;
+  font-size: clamp(1rem, 3vmin, 2.5rem);
   transition: color 0.3s ease;
   text-shadow: 1px 1px 1px rgba(black, 0.5);
   cursor: pointer;
