@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Html, PerspectiveCamera } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
+// @ts-ignore: i don't know why it can't find it; maybe it's looking for only js/ts files
 import resume from "../../assets/resume.pdf";
 import { ChasingOrbs } from "../../components/ChasingOrbs";
 import { transitionToScreen } from "../../stores/navigationStore";
