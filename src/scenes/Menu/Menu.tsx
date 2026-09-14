@@ -3,9 +3,14 @@ import { Html, PerspectiveCamera } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import resume from "../../assets/resume.pdf";
 import { ChasingOrbs } from "../../components/ChasingOrbs";
+import { transitionToScreen } from "../../stores/navigationStore";
 
 export const Menu: React.FC = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const handleBrowserClick = () => {
+    console.log("Browser clicked, transitioning to browse screen");
+    transitionToScreen("browse");
+  };
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={75} />
@@ -78,10 +83,7 @@ export const Menu: React.FC = () => {
             </div>
           </dialog>
           <div className="menu-items">
-            <li
-              className="menu-item"
-              onClick={() => dialogRef.current?.showModal()}
-            >
+            <li className="menu-item" onClick={handleBrowserClick}>
               Browser
             </li>
             <li

@@ -5,28 +5,31 @@ import { Stats } from "@react-three/drei";
 import {
   isTowerAnimationFinished,
   isTowerAnimationNearlyFinished,
-} from "../animationStore";
+} from "../stores/animationStore";
 import { FadeCanvas } from "./Canvas";
+import { commitTransition, currentScreen } from "../stores/navigationStore";
+import { BrowseScreen } from "../scenes/BrowseScreen/BrowseScreen";
+import { isTransitioning } from "../stores/navigationStore";
 
 const Main = () => {
-  // Show the fade before we switch two the menu scene
-  const $isTowerAnimationFinished = useStore(isTowerAnimationFinished);
-  const $isTowerAnimationNearlyFinished = useStore(
-    isTowerAnimationNearlyFinished
-  );
+  const $currentScreen = useStore(currentScreen);
+  const $isTransitioning = useStore(isTransitioning);
 
   return (
     <>
-      {!$isTowerAnimationFinished ? (
-        <FadeCanvas isFadingOut={$isTowerAnimationNearlyFinished}>
+      <FadeCanvas
+        isFadingOut={$isTransitioning}
+        onFadeOutEnd={commitTransition}
+      >
+        {$currentScreen === "tower" ? (
           <TowersScene />
-        </FadeCanvas>
-      ) : (
-        <FadeCanvas isFadingOut={false}>
+        ) : $currentScreen === "browse" ? (
+          <BrowseScreen />
+        ) : (
           <Menu />
-        </FadeCanvas>
-      )}
-      {/* <Stats showPanel={0} className="stats-top-left" /> */}
+        )}
+      </FadeCanvas>
+      <Stats showPanel={0} className="stats-top-left" />
     </>
   );
 };

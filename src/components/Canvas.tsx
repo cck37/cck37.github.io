@@ -12,13 +12,26 @@ const Adaptive = () => (
 interface FadeCanvasProps {
   children: React.ReactNode;
   isFadingOut: boolean;
+  onFadeOutEnd?: () => void;
 }
 
 export const FadeCanvas: React.FC<FadeCanvasProps> = ({
   children,
   isFadingOut,
+  onFadeOutEnd,
 }) => (
-  <div className={isFadingOut ? "fade-out" : "fade-in"}>
+  <div
+    className={isFadingOut ? "fade-out" : "fade-in"}
+    onTransitionEnd={(e) => {
+      if (
+        isFadingOut &&
+        e.target == e.currentTarget &&
+        e.propertyName === "opacity"
+      ) {
+        onFadeOutEnd?.();
+      }
+    }}
+  >
     <Canvas {...canvasProps} className="canvas">
       <Adaptive />
       {children}
