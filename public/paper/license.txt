@@ -1,0 +1,11 @@
+Model Information:
+* title:	Paper
+* source:	https://sketchfab.com/3d-models/paper-041ce602aec94eb28d0ccb6c9bae007b
+* author:	Spider man (https://sketchfab.com/spider-models)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Paper" (https://sketchfab.com/3d-models/paper-041ce602aec94eb28d0ccb6c9bae007b) by Spider man (https://sketchfab.com/spider-models) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

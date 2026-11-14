@@ -20,14 +20,33 @@ export const Orb = forwardRef<
     color?: THREE.Color;
     emissiveIntensity?: number;
     flat?: Boolean;
+    showTrail?: Boolean;
+    materialRef?: React.Ref<THREE.MeshStandardMaterial>;
   } & JSX.IntrinsicElements["mesh"]
 >((props, ref) => {
   const {
     color = new THREE.Color(PS2Blue),
     emissiveIntensity = 10,
     flat = false,
+    showTrail = true,
+    materialRef = null,
     ...meshProps
   } = props;
+
+  const sphere = (
+    <mesh {...meshProps} ref={ref}>
+      <sphereGeometry args={[1, 10, 10]} />
+      <meshStandardMaterial
+        ref={materialRef}
+        emissive={color}
+        emissiveIntensity={emissiveIntensity}
+        toneMapped={false}
+        color={flat ? "black" : ""}
+      />
+    </mesh>
+  );
+
+  if (!showTrail) return sphere;
 
   return (
     <Trail
@@ -39,15 +58,7 @@ export const Orb = forwardRef<
       color={color} // trail color
       attenuation={(w) => w * 0.5} // optional width attenuation
     >
-      <mesh {...meshProps} ref={ref}>
-        <sphereGeometry args={[1, 10, 10]} />
-        <meshStandardMaterial
-          emissive={color}
-          emissiveIntensity={emissiveIntensity}
-          toneMapped={false}
-          color={flat ? "black" : ""}
-        />
-      </mesh>
+      {sphere}
       {/* @ts-ignore: Because of how meshLine is being extended, TS is expecting args. However, when provided, three complains that it doesn't take args */}
       <meshLineMaterial
         color={color}

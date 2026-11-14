@@ -7,6 +7,8 @@ $dark: #323641;
 $light: color.adjust($grey, $lightness: 15%, $space: hsl);
 $ps2blue: #006fcd;
 
+$thick-outline: 1px 1px 1px rgba(black, 0.5);
+
 $depth: 20vw;
 
 $cube-inner-shadow: inset 0 0 1vw rgba(cyan, 0.07);
@@ -224,9 +226,47 @@ dialog {
 .browse-memory-card-read {
   color: white;
   text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  font-size: 1.5rem;
 }
 
 .browse-selection {
   color: gold;
   text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  font-size: 1.5rem;
+}
+
+.browse-modal-wrapper {
+  text-align: center;
+  width: 30rem;
+}
+
+.browse-loading-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.browse-loading-wrapper h1 {
+  color: white;
+  font-weight: lighter;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  font-size: 4rem;
+}
+
+.browse-modal-title {
+  color: gold;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  font-size: 3rem;
+}
+
+.browse-model-description {
+  color: white;
+  text-shadow: $thick-outline;
+  font-size: 3rem;
+  font-weight: lighter;
+}
+
+a.browse-modal-url {
+  
 }

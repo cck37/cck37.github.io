@@ -1,0 +1,11 @@
+Model Information:
+* title:	Randall Boggs from Monsters, Inc- Blender
+* source:	https://sketchfab.com/3d-models/randall-boggs-from-monsters-inc-blender-f04b0cd666db48a0b65027a849711d4e
+* author:	Mickael Boitte (https://sketchfab.com/boittemike1)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Randall Boggs from Monsters, Inc- Blender" (https://sketchfab.com/3d-models/randall-boggs-from-monsters-inc-blender-f04b0cd666db48a0b65027a849711d4e) by Mickael Boitte (https://sketchfab.com/boittemike1) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

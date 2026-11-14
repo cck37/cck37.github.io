@@ -2,10 +2,6 @@ import { Menu } from "../scenes/Menu/Menu";
 import { TowersScene } from "../scenes/Towers/TowersScene";
 import { useStore } from "@nanostores/react";
 import { Stats } from "@react-three/drei";
-import {
-  isTowerAnimationFinished,
-  isTowerAnimationNearlyFinished,
-} from "../stores/animationStore";
 import { FadeCanvas } from "./Canvas";
 import { commitTransition, currentScreen } from "../stores/navigationStore";
 import { BrowseScreen } from "../scenes/BrowseScreen/BrowseScreen";
